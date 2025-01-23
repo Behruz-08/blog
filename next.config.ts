@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ['via.placeholder.com'], // Add the domain here
+    domains: [ 'picsum.photos', 'unsplash.com'],
   },
 };
 

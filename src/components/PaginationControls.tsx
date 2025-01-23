@@ -1,5 +1,5 @@
-
-import React from 'react';
+import { Stack, Button } from "@mui/material";
+import React from "react";
 
 interface PaginationControlsProps {
   currentPage: number;
@@ -21,15 +21,33 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
   };
 
   return (
-    <div className="pagination-controls">
-      <button onClick={handlePrev} disabled={currentPage === 1}>
-        Previous
-      </button>
+    <Stack
+      direction="row"
+      spacing={2}
+      alignItems="center"
+      justifyContent="center"
+      className="pagination-controls"
+    >
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handlePrev}
+        disabled={currentPage === 1}
+      >
+        Prev
+      </Button>
+
       <span>{`Page ${currentPage} of ${totalPages}`}</span>
-      <button onClick={handleNext} disabled={currentPage === totalPages}>
+
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleNext}
+        disabled={currentPage === totalPages}
+      >
         Next
-      </button>
-    </div>
+      </Button>
+    </Stack>
   );
 };
 

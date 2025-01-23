@@ -1,11 +1,10 @@
-
 "use client";
 
-import React, { useEffect } from 'react';
-import {  useSelector } from 'react-redux';
-import { useAppDispatch } from '@/hooks/UseAppDispatch';
-import { fetchPosts } from '@/features/posts/postsSlice';
-import { RootState } from '../store';
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "@/hooks/UseAppDispatch";
+import { fetchPosts } from "@/features/posts/postsSlice";
+import { RootState } from "../store";
 
 const PostList = () => {
   const dispatch = useAppDispatch();
@@ -15,8 +14,8 @@ const PostList = () => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
-  if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'failed') return <p>Failed to load posts.</p>;
+  if (status === "loading") return <p>Loading...</p>;
+  if (status === "failed") return <p>Failed to load posts.</p>;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

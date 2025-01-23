@@ -1,7 +1,8 @@
-import React from 'react';
-import Modal from '@mui/material/Modal';
-import { Post } from '@/types';
-import Image from 'next/image';
+import React from "react";
+import Modal from "@mui/material/Modal";
+import { Post } from "@/types";
+import Image from "next/image";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 
 interface PostModalProps {
   open: boolean;
@@ -14,12 +15,42 @@ const PostModal: React.FC<PostModalProps> = ({ open, post, onClose }) => {
 
   return (
     <Modal open={open} onClose={onClose}>
-      <div className="modal-content">
-        <h2>{post.title}</h2>
-        <Image src={post.imageUrl} alt={post.title}     width={150} // Укажите ширину
-    height={150}  />
-        <p>{post.body}</p>
-      </div>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          bgcolor: "background.paper",
+          border: "2px solid #000",
+          boxShadow: 24,
+          p: 4,
+          borderRadius: "8px",
+        }}
+      >
+        <Card sx={{ maxWidth: 350, height: 450 }}>
+          <Image
+            className="card-image"
+            src={post.imageUrl}
+            alt={post.title}
+            width={350}
+            height={300}
+            priority
+            unoptimized
+          />
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h5"
+              sx={{ marginBottom: 2 }}
+              component="div"
+            >
+              {post.title}
+            </Typography>
+            <Typography>{post.body}</Typography>
+          </CardContent>
+        </Card>
+      </Box>
     </Modal>
   );
 };

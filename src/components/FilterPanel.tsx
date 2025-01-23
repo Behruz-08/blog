@@ -1,5 +1,5 @@
-
-import React from 'react';
+import React from "react";
+import { Select, MenuItem } from "@mui/material";
 
 interface FilterPanelProps {
   categories: string[];
@@ -13,20 +13,27 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   onCategoryChange,
 }) => {
   return (
-    <div className="filter-panel">
-      <select
-        value={selectedCategory}
-        onChange={(e) => onCategoryChange(e.target.value)}
-        className="filter-select"
-      >
-        <option value="">All Categories</option>
-        {categories.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
-    </div>
+    <Select
+      value={selectedCategory}
+      onChange={(e) => onCategoryChange(e.target.value)}
+      displayEmpty
+      sx={{
+        border: "none",
+        borderBottom: "0.5px solid #000",
+        borderRadius: 0,
+
+        "& .MuiOutlinedInput-notchedOutline": {
+          border: "none",
+        },
+      }}
+    >
+      <MenuItem value="">All Categories</MenuItem>
+      {categories.map((category) => (
+        <MenuItem key={category} value={category}>
+          {category}
+        </MenuItem>
+      ))}
+    </Select>
   );
 };
 

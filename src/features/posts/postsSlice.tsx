@@ -1,9 +1,6 @@
-
-
-
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Post, PostsState } from '@/types';
-import { fetchPostsWithImages } from '@/utils/api';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { Post, PostsState } from "@/types";
+import { fetchPostsWithImages } from "@/utils/api";
 
 const initialState: PostsState = {
   posts: [],
@@ -13,17 +10,17 @@ const initialState: PostsState = {
   currentPage: 1,
   pageSize: 10,
   selectedTags: [],
-  searchQuery: '',
-  status: 'idle',
+  searchQuery: "",
+  status: "idle",
 };
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const posts = await fetchPostsWithImages();
   return posts;
 });
 
 const postsSlice = createSlice({
-  name: 'posts',
+  name: "posts",
   initialState,
   reducers: {
     setSearchQuery(state, action: PayloadAction<string>) {
@@ -42,17 +39,17 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
         state.error = null;
       })
       .addCase(fetchPosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
-        state.status = 'succeeded';
+        state.status = "succeeded";
         state.posts = action.payload;
-        state.filteredPosts = action.payload; 
+        state.filteredPosts = action.payload;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || 'Failed to fetch posts';
+        state.status = "failed";
+        state.error = action.error.message || "Failed to fetch posts";
       });
   },
 });

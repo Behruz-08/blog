@@ -1,5 +1,5 @@
-
-import React from 'react';
+import { Input } from "@mui/material";
+import React from "react";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -12,15 +12,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onSearch }) => {
   };
 
   return (
-    <div className="search-bar">
-      <input
-        type="text"
-        placeholder="Search posts..."
-        value={searchTerm}
-        onChange={handleInputChange}
-        className="search-input"
-      />
-    </div>
+    <Input
+      aria-label="Demo input"
+      placeholder="Search posts…"
+      onChange={handleInputChange}
+      value={searchTerm}
+    />
   );
 };
 

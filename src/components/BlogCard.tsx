@@ -1,37 +1,47 @@
-import React from 'react';
-import { Post } from '@/types';
-import Image from 'next/image';
+import React from "react";
+import { Post } from "@/types";
+import Image from "next/image";
+import { Card, CardContent, Typography } from "@mui/material";
 
 interface BlogCardProps {
   post: Post;
   onClick: () => void;
+  className?: string;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ post, onClick }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ post, onClick ,  className}) => {
   return (
-   
-    <div className="card" onClick={onClick}>
+    <div      className={`bg-white rounded-lg overflov-hiden ${className}`} onClick={onClick}>
       {post.imageUrl ? (
-        // <Image  src={post.imageUrl} alt={post.title}  />
-        <Image
-        className="card-image"
-        src={post.imageUrl} // URL of the image
-        alt={post.title}
-        width={150} // Specify width
-        height={150} // Specify height
-      />
+        <Card sx={{ maxWidth: 400, height: 500 }}>
+          <Image
+            className="card-image"
+            src={post.imageUrl}
+            alt={post.title}
+            width={400}
+            height={300}
+            priority
+            unoptimized
+          />
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h5"
+              sx={{ marginBottom: 2 }}
+              component="div"
+            >
+              {post.title}
+            </Typography>
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              {post.body.slice(0, 100)}...
+            </Typography>
+          </CardContent>
+        </Card>
       ) : (
         <div className="placeholder">No Image Available</div>
       )}
-      <h3 className="card-title">{post.title}</h3>
-      <p className="card-body">{post.body.slice(0, 100)}...</p>
     </div>
   );
 };
 
 export default BlogCard;
-
-
-
-
-
