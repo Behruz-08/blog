@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+The project is available at the following link:(https://blog-green-five-77.vercel.app/)
+
 ## Getting Started
 
 First, run the development server:
